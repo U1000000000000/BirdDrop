@@ -10,17 +10,14 @@
 - 🌍 **Geo Pairing** - Find and connect with nearby devices automatically
 - 📷 **QR Code Pairing** - Quick pairing across rooms or networks
 - 🎨 **Modern UI** - Smooth animations and intuitive interface
-- 🔓 **No Limits** - Transfer files of any size
 - 🎭 **Fun Names** - Temporary, memorable names for each session
 
 ## 🎨 Design Features
 
 - **Gradient backgrounds** with smooth color transitions
 - **Card-based layout** with rounded corners and shadows
-- **Tab navigation** for easy switching between pairing methods
-- **Real-time status indicators** with animated badges
+- **Real-time status indicators**
 - **Interactive animations** for better user feedback
-- **Custom scrollbars** matching the app theme
 - **Responsive icons** from Heroicons
 - **Color-coded states** (green for connected, yellow for connecting, etc.)
 
