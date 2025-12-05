@@ -20,6 +20,23 @@ export default function FileShare({ sessionId, onInitWebRTC }) {
   const [receivedFiles, setReceivedFiles] = useState(window.__birddrop_session_state[sessionId].receivedFiles);
   const [previewFile, setPreviewFile] = useState(null);
   
+  // Handle browser back button for modal
+  useEffect(() => {
+    if (previewFile) {
+      window.history.pushState({ modal: 'preview' }, '');
+      
+      const handlePopState = (e) => {
+        setPreviewFile(null);
+      };
+      
+      window.addEventListener('popstate', handlePopState);
+      
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    }
+  }, [previewFile]);
+  
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.__modal_open = previewFile !== null;
@@ -1161,7 +1178,13 @@ export default function FileShare({ sessionId, onInitWebRTC }) {
       {previewFile && (
         <FilePreview
           file={previewFile}
-          onClose={() => setPreviewFile(null)}
+          onClose={() => {
+            if (window.history.state?.modal === 'preview') {
+              window.history.back();
+            } else {
+              setPreviewFile(null);
+            }
+          }}
           onDownload={async () => {
             if (typeof document === 'undefined') return;
             
