@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BirdDrop</string>
+    <string name="servicedesc">HCE Service</string>
+    <string name="aiddescription">AID Group</string>
+</resources>
