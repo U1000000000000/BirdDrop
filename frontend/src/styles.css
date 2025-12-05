@@ -85,6 +85,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* WebView performance optimizations */
+@media (max-width: 768px) {
+  * {
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Disable smooth scroll on mobile for better performance */
+  html {
+    scroll-behavior: auto !important;
+  }
+  
+  /* Optimize animations for mobile */
+  *[class*="transition"],
+  *[class*="animate"] {
+    transition-duration: 150ms !important;
+  }
+}
+
 /* Remove default video poster on Android WebView */
 video {
   background: transparent !important;
