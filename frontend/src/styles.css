@@ -88,8 +88,6 @@
 /* WebView performance optimizations */
 @media (max-width: 768px) {
   * {
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
     -webkit-tap-highlight-color: transparent;
   }
   
