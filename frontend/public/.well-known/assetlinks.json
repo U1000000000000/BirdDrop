@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.example.birddrop",
+      "sha256_cert_fingerprints": [
+        "52:7F:E1:90:98:AA:9E:87:9D:DE:CA:10:8B:97:31:4B:BF:7C:E5:71:19:6C:4D:F2:BC:C8:8E:20:D6:A4:D6:35"
+      ]
+    }
+  }
+]
