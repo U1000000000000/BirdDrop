@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles and animations */
+@layer base {
+  html, body, #root {
+    height: 100%;
+    min-height: 100%;
+  }
+  /* Put the decorative gradient on the root html element so overscroll shows the same gradient */
+  /* Apply the decorative gradient to both html and body so overscroll always shows it */
+  /* Use fixed pseudo-elements to render the gradient and noise under all content.
+     This prevents white seams during overscroll by keeping the gradient painted
+     as a bottom-most layer that always covers the viewport. */
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  body {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* background gradient layer (under everything) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    background:
+      radial-gradient(circle 900px at 10% 85%, #2C3930 0%, #32012F 60%, transparent 100%),
+      radial-gradient(circle 700px at 90% 15%, #2D3250 0%, #32012F 50%, transparent 100%),
+      radial-gradient(ellipse 120% 80% at 20% 30%, #32012F 0%, #32012F 70%, #2C3930 90%, transparent 100%),
+      radial-gradient(ellipse 80% 60% at 80% 70%, #32012F 0%, #2D3250 40%, #32012F 80%, transparent 100%),
+      linear-gradient(120deg, #32012F 0%, #32012F 60%, #2C3930 80%, #2D3250 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  /* subtle noise overlay above the gradient */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.16;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4800" height="4800"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="1.8" numOctaves="6"/></filter><rect width="4800" height="4800" filter="url(%23noise)"/></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+}
+
+@layer utilities {
+  /* Custom backdrop blur utilities if needed */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+  }
+  
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+  
+  .backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Smooth transitions */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default video poster on Android WebView */
+video {
+  background: transparent !important;
+}
+
+video::-webkit-media-controls-panel {
+  background: transparent !important;
+}
+
+video::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+/* Hide default poster/thumbnail that appears before video loads */
+video::before,
+video::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* For camera/video elements */
+video[autoplay] {
+  background: black !important;
+}
