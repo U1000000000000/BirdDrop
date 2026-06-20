@@ -5,7 +5,12 @@ export function getWebSocketUrl() {
     return import.meta.env.VITE_WS_URL;
   }
   
-  // In development, use same host (Vite proxy handles it)
-  const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-  return `${wsProtocol}//${window.location.host}/ws`;
+  // If running locally (localhost), use the current host (vite proxy)
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+    return `${wsProtocol}//${window.location.host}/ws`;
+  }
+
+  // Default production fallback (Render proxy)
+  return 'wss://rendersal.onrender.com/birddrop/ws';
 }
